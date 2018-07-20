@@ -16,6 +16,7 @@
 package xyz.elmot.vaadin10.qrreader;
 
 import com.vaadin.flow.component.AttachEvent;
+import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.HtmlComponent;
@@ -26,9 +27,14 @@ import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.page.Viewport;
+import com.vaadin.flow.function.SerializableConsumer;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.InitialPageSettings;
 import com.vaadin.flow.server.PageConfigurator;
+
+import javax.servlet.Registration;
+import java.io.Serializable;
+import java.util.function.Consumer;
 
 /**
  * The main layout contains the header with the navigation buttons, and the
@@ -39,9 +45,16 @@ import com.vaadin.flow.server.PageConfigurator;
 @StyleSheet("/css/jsQRCam.css")
 public class QRReader extends Div {
 
+    private SerializableConsumer<String> codeConsumer;
+
     public QRReader() {
         add(new Html("<div id='jsQRCamLoadingMessage'></div>"));
         add(new Html("<canvas id='jsQRCamCanvas' hidden style='width:100%'></canvas>"));
+    }
+
+    public QRReader(SerializableConsumer<String> codeConsumer) {
+        this();
+        this.codeConsumer = codeConsumer;
     }
 
     @Override
@@ -50,4 +63,18 @@ public class QRReader extends Div {
         attachEvent.getUI().getPage().executeJavaScript("jsQRCam.init()");
     }
 
+    public void reset() {
+        getUI().ifPresent(ui -> ui.getPage().executeJavaScript("jsQRCam.reset()"));
+    }
+
+    @ClientCallable
+    public void onClientCodeRead(String code) {
+        if (codeConsumer != null) {
+            codeConsumer.accept(code);
+        }
+    }
+
+    public void onCode(SerializableConsumer<String> codeConsumer) {
+        this.codeConsumer = codeConsumer;
+    }
 }

@@ -25,9 +25,10 @@ var jsQRCam = {
                 jsQRCam.drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
                 jsQRCam.drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
                 jsQRCam.drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+                console.debug("Code: ", code);
                 if (jsQRCam.prevCodeData !== code.data) {
                     jsQRCam.prevCodeData = code.data;
-                    console.log("Code: ", code);
+                    jsQRCam.canvasElement.parentElement.$server.onClientCodeRead(code.data);
                 }
             }
         }
@@ -45,8 +46,10 @@ var jsQRCam = {
             jsQRCam.video.play();
             requestAnimationFrame(jsQRCam.tick);
         });
+    },
+    reset: function () {
+        this.prevCodeData = null;
     }
-
 
 };
 

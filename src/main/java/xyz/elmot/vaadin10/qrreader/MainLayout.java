@@ -17,6 +17,7 @@ package xyz.elmot.vaadin10.qrreader;
 
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.InitialPageSettings;
@@ -39,7 +40,7 @@ public class MainLayout extends Div
         add(title);
 
         addClassName("main-layout");
-        QRReader qrReader = new QRReader();
+        QRReader qrReader = new QRReader(Notification::show);
 
         qrReader.setWidth("66%");
         add(qrReader);
