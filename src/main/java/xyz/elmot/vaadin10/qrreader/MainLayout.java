@@ -15,6 +15,7 @@
  */
 package xyz.elmot.vaadin10.qrreader;
 
+import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.notification.Notification;
@@ -30,11 +31,12 @@ import com.vaadin.flow.server.PageConfigurator;
 @SuppressWarnings("unused")
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
 @Route("")
+@StyleSheet("/css/main.css")
 public class MainLayout extends Div
         implements PageConfigurator {
 
     public MainLayout() {
-        H2 title = new H2("Some demo");
+        H2 title = new H2("V10 QR Reader Demo");
         title.addClassName("main-layout__title");
 
         add(title);
@@ -42,7 +44,6 @@ public class MainLayout extends Div
         addClassName("main-layout");
         QRReader qrReader = new QRReader(Notification::show);
 
-        qrReader.setWidth("66%");
         add(qrReader);
     }
 
