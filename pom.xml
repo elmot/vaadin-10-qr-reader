@@ -41,18 +41,8 @@
 
     <repositories>
         <repository>
-            <id>Vaadin Directory</id>
-            <url>http://maven.vaadin.com/vaadin-addons</url>
-        </repository>
-        <repository>
             <id>Vaadin prereleases</id>
             <url>http://maven.vaadin.com/vaadin-prereleases</url>
-        </repository>
-        <!-- The bintray repository contain webjars immediately after generation. If the webjar is available
-             in Maven central, you do not need this repository -->
-        <repository>
-            <id>webjars</id>
-            <url>https://dl.bintray.com/webjars/maven</url>
         </repository>
     </repositories>
 
@@ -65,14 +55,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <scope>test</scope>
-        </dependency>
-        <!-- The following dependency is generated using webjars.org. If 
-             it does not resolve, go to https://www.webjars.org and deploy it as "Bower GitHub"
-             -->
-        <dependency>
-            <groupId>org.webjars.bowergithub.vpusher</groupId>
-            <artifactId>game-card</artifactId>
-            <version>1.0.6</version>
         </dependency>
     </dependencies>
 
@@ -109,7 +91,12 @@
                     <webAppConfig>
                         <!-- This is only needed to be able to unzip webjars 
                             directly into src/test/webjar-debug and modify them for testing -->
-                        <resourceBase>src/test/webjar-debug/META-INF/resources</resourceBase>
+                        <resourceBases>
+                            <resourceBase>src/main/resources/META-INF/resources</resourceBase>
+                            <resourceBase>src/test/webapp</resourceBase>
+                        </resourceBases>
+                        <!--<resourceBase>src/test/webapp</resourceBase>-->
+                        <!--<contextPath>qr-test</contextPath>-->
                     </webAppConfig>
                 </configuration>
             </plugin>

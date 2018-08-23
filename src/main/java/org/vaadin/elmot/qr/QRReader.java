@@ -27,9 +27,9 @@ import com.vaadin.flow.function.SerializableConsumer;
  * The main layout contains the header with the navigation buttons, and the
  * child views below that.
  */
-@JavaScript("/js/jsQR.js")
-@JavaScript("/js/camSupport.js")
-@StyleSheet("/css/jsQRCam.css")
+@JavaScript("context://qr/js/jsQR.js")
+@JavaScript("context://qr/js/camSupport.js")
+@StyleSheet("context://qr/css/jsQRCam.css")
 public class QRReader extends Div {
 
     private SerializableConsumer<String> codeConsumer;
