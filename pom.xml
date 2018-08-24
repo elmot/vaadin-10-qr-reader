@@ -3,11 +3,11 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.vaadin.elmot</groupId>
-    <artifactId>vaadin-10-qr-reader</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>Vaadin 10 QR Reader</name>
-    <description>Integration of game-card for Vaadin 10</description>
+    <groupId>org.vaadin.elmot.v10</groupId>
+    <artifactId>qr-reader</artifactId>
+    <version>1.0.0</version>
+    <name>QR Reader</name>
+    <description>Vaadin 10+ QR Reader, pure client-side recognition, thanks to jsQR</description>
 
     <properties>
         <vaadin.version>10.0.4</vaadin.version>
@@ -95,8 +95,7 @@
                             <resourceBase>src/main/resources/META-INF/resources</resourceBase>
                             <resourceBase>src/test/webapp</resourceBase>
                         </resourceBases>
-                        <!--<resourceBase>src/test/webapp</resourceBase>-->
-                        <!--<contextPath>qr-test</contextPath>-->
+                        <contextPath>/qr-test</contextPath>
                     </webAppConfig>
                 </configuration>
             </plugin>
