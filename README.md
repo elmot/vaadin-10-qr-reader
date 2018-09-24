@@ -4,6 +4,8 @@ This is a Vaadin 10 Flow addon for client-side QR recognition.
 
 [On-line demo](https://vaadin-10-qr-reader.herokuapp.com/)
 
+[Vaadin directory](https://vaadin.com/directory/component/qr-reader)
+
 Based on [jsQR](https://github.com/cozmo/jsQR) library.
 
 ## Prerequisites
